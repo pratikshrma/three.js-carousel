@@ -1,21 +1,18 @@
-import React from 'react'
 import Card from './Card'
 
 const Experience = () => {
-    const count = 10
+    const count = 8
     const radius = 2
 
     const images = [
-        "img1.webp",
-        "img2.webp",
-        "img3.webp",
-        "img4.webp",
-        "img5.webp",
-        "img6.webp",
-        "img7.webp",
-        "img8.webp",
-        "img9.webp",
-        "img10.webp"
+        "1.png",
+        "2.png",
+        "3.png",
+        "4.png",
+        "5.png",
+        "6.png",
+        "7.png",
+        "8.png",
     ]
 
     return (
@@ -23,7 +20,7 @@ const Experience = () => {
             <group>
                 {images.map((each, index) => {
                     const angle = ((index / count) * Math.PI * 2)
-                    return <Card url={`./${each}`} key={index} position={[Math.sin(angle) * radius, 0, Math.cos(angle) * radius]} rotation-y={angle + Math.PI} />
+                    return <Card url={`/AdiImages/${each}`} key={index} position={[Math.sin(angle) * radius, 0, Math.cos(angle) * radius]} rotation-y={angle + Math.PI} />
                 })}
             </group>
 

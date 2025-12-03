@@ -12,10 +12,10 @@ const Card = ({ url, ...props }) => {
     const over = (e) => { e.stopPropagation(); setHovered(true) }
 
     useFrame((_state, delta) => {
-        easing.damp3(imageRef.current.scale, hovered ? [1.15, 1.15, 1.15] : [1, 1, 1], 0.1, delta)
+        easing.damp3(imageRef.current.scale, hovered ? [1, 1, 1] : [1.05, 1.05, 1.05], 0.1, delta)
 
-        easing.damp(imageRef.current.material, 'radius', hovered ? 0.25 : 0.1, 0.2, delta)
-        easing.damp(imageRef.current.material, 'zoom', hovered ? 1.0 : 1.5, 0.2, delta)
+        easing.damp(imageRef.current.material, 'radius', hovered ? 0.1 : 0.1, 0.2, delta)
+        easing.damp(imageRef.current.material, 'zoom', hovered ? 1.3 : 1, 0.2, delta)
     })
 
 
