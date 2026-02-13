@@ -5,14 +5,14 @@ const Experience = () => {
   const radius = 2
 
   const images = [
-    "1.svg",
+    "1.png",
     "2.png",
     "3.png",
     "4.png",
     "5.png",
     "6.png",
-    "7.svg",
-    "8(2).png",
+    "7.png",
+    "8.png",
   ]
 
   return (
