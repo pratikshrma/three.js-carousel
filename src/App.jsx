@@ -9,15 +9,14 @@ import { useDrag } from '@use-gesture/react'
 
 const Rig = ({ children, ...props }) => {
   const groupRef = useRef()
-  const dragOffset = useRef(0.0)
+  const rotationTarget = useRef(0.0)
   const velocity = useRef(0.0)
   const isDragging = useRef(false)
 
-  const gesture = useDrag(({ active, movement: [x] }) => {
+  const gesture = useDrag(({ active, delta: [dx] }) => {
     if (active) {
       isDragging.current = true
-      const speed = x * 0.000005
-      dragOffset.current += speed
+      rotationTarget.current += dx * 0.002
       velocity.current = speed
     } else {
       isDragging.current = false
@@ -25,11 +24,11 @@ const Rig = ({ children, ...props }) => {
   })
 
   useFrame((state, delta) => {
-    console.log(dragOffset.current)
+    console.log(rotationTarget.current)
 
     if (!isDragging.current) {
       velocity.current *= 0.95
-      dragOffset.current += velocity.current
+      rotationTarget.current += velocity.current
 
       state.events.update()
 
@@ -41,8 +40,7 @@ const Rig = ({ children, ...props }) => {
       )
       state.camera.lookAt(0, 0, 0)
     }
-    groupRef.current.rotation.y = dragOffset.current * (Math.PI * 2)
-
+    easing.damp(groupRef.current.rotation, 'y', rotationTarget.current, 0.25, delta)
   })
 
   return <group ref={groupRef} {...props} {...gesture()}>{children}</group>
